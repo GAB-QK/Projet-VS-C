@@ -1,0 +1,33 @@
+
+les types sont des mensonges.
+la mémoire est la seule réalité !
+
+EXEMPLE : 
+
+unsigned int u_int   = 4294967295; 
+int          s_int   = -1; 
+
+----------------------------------------------------------
+'u_int' et 's_int' sont contiennent la même valeur binaire
+----------------------------------------------------------
+u_int(%x): 0xffffffff 	 s_int(%x): 0xffffffff 
+u_int(%u): 4294967295 	 s_int(%u): 4294967295 
+u_int(%d): -1 		 s_int(%d): -1 
+
+char letter = 'a'; 
+
+-----------------------------------
+'letter' possède une valeur binaire
+-----------------------------------
+letter(%x): 0x61 
+letter(%c): a 
+letter(%u): 97 
+
+letter++; 
+
+-------------------------------------------
+la veleur de 'letter' peut être incrémentée
+-------------------------------------------
+letter(%x): 0x62 
+letter(%c): b 
+letter(%u): 98

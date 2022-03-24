@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+
+int main() {
+
+  printf("\n");
+  printf("Les variables ont des valeurs. \n");
+  printf("Les valeurs ont des adresses.  \n");
+  printf("Ces adresses sont des valeurs, \n");
+  printf("ce sont les pointeurs !        \n");
+  printf("\n");
+  printf("EXEMPLE : \n");
+  printf("\n");
+
+  char letter = 'c';
+
+  printf("char letter = 'c'; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("\n");
+
+  int number = 5;
+
+  printf("int number = 5; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("%p \t 0x%04x \n", &number, number);
+  printf("\n");
+
+  int autre = 10;
+
+  printf("int autre = 10; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("%p \t 0x%04x \n", &number, number);
+  printf("%p \t 0x%04x \n", &autre, autre);
+  printf("\n");
+
+  char *char_ptr = &letter;
+
+  printf("char *char_ptr = &letter; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("%p \t 0x%04x \n", &number, number);
+  printf("%p \t 0x%04x \n", &autre, autre);
+  printf("%p \t 0x%p   \n", &char_ptr, char_ptr);
+  printf("\n");
+
+  char letter_copy = *char_ptr;
+
+  printf("char letter_copy = *char_ptr; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("%p \t 0x%04x \n", &number, number);
+  printf("%p \t 0x%04x \n", &autre, autre);
+  printf("%p \t 0x%p   \n", &char_ptr, char_ptr);
+  printf("%p \t 0x%01x \n", &letter_copy, letter_copy);
+  printf("\n"); 
+
+  char array[3] = { 1, 2, 3 };
+
+  printf("int array[3] = { 1, 2, 3 }; \n");
+  printf("\n");
+  printf("mémoire : \n");
+  printf("%p \t 0x%01x \n", &letter, letter);
+  printf("%p \t 0x%04x \n", &number, number);
+  printf("%p \t 0x%04x \n", &autre, autre);
+  printf("%p \t 0x%p   \n", &char_ptr, char_ptr);
+  printf("%p \t 0x%01x \n", &letter_copy, letter_copy);
+  printf("%p \t %p     \n", &array, array);
+  printf("%p \t 0x%04x \n", &array+0, *(array+0));
+  printf("%p \t 0x%04x \n", &array+1, *(array+1));
+  printf("%p \t 0x%04x \n", &array+2, *(array+2));
+  printf("%p \t 0x%04x \n", &array[0], array[0]);
+  printf("%p \t 0x%04x \n", &array[1], array[1]);
+  printf("%p \t 0x%04x \n", &array[2], array[2]);
+  printf("\n"); 
+
+  return 0;
+}
