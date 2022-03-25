@@ -7,6 +7,7 @@ struct contact {
   char* lastname;
   unsigned int age;
   char* job;
+  unsigned int* id ;
 };
 
 void contact_print( struct contact contact ) {
@@ -16,7 +17,8 @@ void contact_print( struct contact contact ) {
   printf("%s\n", contact.job);
 }
 
-struct contact contact_create( char* firstname,  char* lastname, unsigned int age, char* job ) {
+
+struct contact contact_create( char* firstname,  char* lastname, unsigned int age, char* job) {
   struct contact contact;
 
   contact.firstname = malloc( strlen(firstname) * sizeof(char) );
@@ -30,19 +32,25 @@ struct contact contact_create( char* firstname,  char* lastname, unsigned int ag
   return contact;
 }
 
-void contact_destroy( struct contact contact ) {
-  free(contact.firstname);
-  free(contact.lastname);
-  free(contact.job);
+struct element{
+    struct contact contact;
+    struct element *prev;
+    struct element *next;
+};
+
+void init_first_element(struct element *first_element, char *prenom, char *nom, unsigned int age, char *job){
+    first_element->contact = contact_create(prenom,nom,age,job);
+    first_element->prev = malloc(sizeof(char));
+    first_element->prev = NULL;
+    first_element->next = malloc(sizeof(char));
+    first_element->prev = NULL;
 }
+
 
 int main() {
 
-  struct contact Bob = contact_create("Bob", "Bobby", 32, "Milliardaire");
-
-  contact_print( Bob );
-
-  contact_destroy( Bob );
-
-  return 0;
+    struct element *first_element = malloc(sizeof(struct element));
+    struct contact Bob = contact_create("Bob", "Bobby", 32, "Milliardaire");
+    contact_print( Bob );
+    return 0;
 }
