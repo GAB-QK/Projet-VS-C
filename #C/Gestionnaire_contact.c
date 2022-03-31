@@ -127,7 +127,7 @@ void affichage_gestionnaire(struct Liste *liste)
     }
 
     struct GYM *parcourt = liste->premier;
-
+    printf("Liste de Membres : \n");
     while (parcourt != NULL)
     {
         affichage(parcourt);
@@ -142,14 +142,15 @@ void recherche_par_int(struct Liste *liste, unsigned int recherche)
 
     while (temp != NULL)
     {
-        if (recherche == temp->id || recherche == temp-> size || recherche == temp-> weight || recherche == temp-> age)
+        if (recherche == temp->id || recherche == temp->size || recherche == temp->weight || recherche == temp->age)
         {
-            printf("\n");
-            printf("trouvé !!! \n");
+            verification++;
+            if (verification == 1)
+            {
+                printf("\n recherche : %u \n", recherche);
+            }
             affichage(temp);
             temp = temp->suivant;
-            verification ++;
-
         }
         else
         {
@@ -158,26 +159,58 @@ void recherche_par_int(struct Liste *liste, unsigned int recherche)
     }
     if (verification == 0)
     {
+        printf("\n recherche : %u \n", recherche);
+        printf("\n pas de correspondance a la recherche");
+    }
+}
+
+void recherche_par_char(struct Liste *liste, char *recherche)
+{
+    struct GYM *temp = liste->premier;
+    unsigned int verification = 0;
+    int i = 0;
+
+    while (temp != NULL)
+    {
+
+        if (strcmp(recherche, temp->name) || strcmp(recherche, temp->lastname) || strcmp(recherche, temp->souscription) == 0)
+        {
+            verification++;
+            if (verification == 1)
+            {
+                printf("\n recherche : %s \n", recherche);
+            }
+            affichage(temp);
+            temp = temp->suivant;
+        }
+        else
+        {
+            temp = temp->suivant;
+        }
+    }
+    if (verification == 0)
+    {
+        printf("\n recherche : %s \n", recherche);
         printf("pas de correspondance a la recherche");
     }
-    
+
 }
 
 int main()
 {
     struct Liste *maListe = initialisation();
-    // gab
+
     insertion(maListe, "moïse", "Clipal", "membre", 02, 22, 75, 175);
     insertion(maListe, "sofiane", "Clipal", "membre", 03, 2, 75, 174);
-    insertion(maListe, "charlottegrosboobs", "Clipal", "membre", 03, 22, 75, 17);
+    insertion(maListe, "JP", "Clipal", "membre", 03, 22, 75, 17);
 
-    /* supprimer(maListe, 2);
-    supprimer(maListe, 1); */
+    supprimer(maListe, 2);
+    supprimer(maListe, 1); 
 
     affichage_gestionnaire(maListe);
 
-    recherche_par_int(maListe, 2);
-    
+    recherche_par_int(maListe, 03);
+    recherche_par_char(maListe, "sofiane");
 
     return 0;
 }
