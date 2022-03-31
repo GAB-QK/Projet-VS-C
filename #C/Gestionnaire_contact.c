@@ -12,6 +12,7 @@ struct GYM
     unsigned int weight;
     unsigned int size;
     struct GYM *suivant;
+    struct GYM *precedent;
 };
 
 struct Liste
@@ -38,12 +39,14 @@ struct Liste *initialisation()
     gym->size = 180;
 
     gym->suivant = NULL;
+    gym->precedent = NULL;
     liste->premier = gym;
 
     return liste;
 }
 
-void insertion(struct Liste *liste, char *name, char *lastname, char *souscription, unsigned int id, unsigned int age, unsigned int weight, unsigned int size)
+void insertion(struct Liste *liste, char *name, char *lastname,
+               char *souscription, unsigned int id, unsigned int age, unsigned int weight, unsigned int size)
 {
     struct GYM *new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
@@ -64,10 +67,12 @@ void insertion(struct Liste *liste, char *name, char *lastname, char *souscripti
 
     while (temp->suivant != NULL)
     {
-        temp = temp->suivant;
+        temp = temp->suivant; // en sortie derniere element avant NULL
     }
-    temp->suivant = new;
-    new->suivant = NULL;
+
+    temp->suivant = new;   // remplace l'ancien NULL par le nouveau
+    new->precedent = temp; // fait pointer nouvelle element a l'element precedent
+    new->suivant = NULL;   // fais pointer le new vers NULL car devient derniere element de la liste
 }
 
 void supprimer(struct Liste *liste, unsigned int id)
@@ -85,17 +90,36 @@ void supprimer(struct Liste *liste, unsigned int id)
     {
         while (temp->suivant->id != id)
         {
-            temp = temp->suivant;
+            temp = temp->suivant; // en sortie element juste avant l'element qui doit etre supp
         }
 
         temp2 = temp->suivant->suivant; // element 3
                                         // temp = element 1
         free(temp->suivant);            // supp element 2
         temp->suivant = temp2;          // repointe element 1 ver l'element 3
+        temp2->precedent = temp;        // repointe le precedent de l'element 3 sure le 1
     }
 }
 
-void affichage(struct Liste *liste)
+void affichage(struct GYM *parcourt)
+{
+    printf("prenom : %s ", parcourt->name);
+    printf("/");
+    printf("nom : %s ", parcourt->lastname);
+    printf("/");
+    printf("abonnement :  %s ", parcourt->souscription);
+    printf("/");
+    printf("ID : %u ", parcourt->id);
+    printf("/");
+    printf("Age :  %u  ", parcourt->age);
+    printf("/");
+    printf("Poid : %u  ", parcourt->weight);
+    printf("/");
+    printf("Taille : %u ", parcourt->size);
+    printf("\n");
+}
+
+void affichage_gestionnaire(struct Liste *liste)
 {
     if (liste == NULL)
     {
@@ -106,22 +130,37 @@ void affichage(struct Liste *liste)
 
     while (parcourt != NULL)
     {
-        printf("%s ", parcourt->name);
-        printf("/");
-        printf("%s ", parcourt->lastname);
-        printf("/");
-        printf("%s ", parcourt->souscription);
-        printf("/");
-        printf("%u -> ", parcourt->id);
-        printf("/");
-        printf("%u -> ", parcourt->age);
-        printf("/");
-        printf("%u -> ", parcourt->weight);
-        printf("/");
-        printf("%u -> ", parcourt->size);
-        printf("\n");
+        affichage(parcourt);
         parcourt = parcourt->suivant;
     }
+}
+
+void recherche_par_int(struct Liste *liste, unsigned int recherche)
+{
+    struct GYM *temp = liste->premier;
+    unsigned int verification = 0;
+
+    while (temp != NULL)
+    {
+        if (recherche == temp->id || recherche == temp-> size || recherche == temp-> weight || recherche == temp-> age)
+        {
+            printf("\n");
+            printf("trouvé !!! \n");
+            affichage(temp);
+            temp = temp->suivant;
+            verification ++;
+
+        }
+        else
+        {
+            temp = temp->suivant;
+        }
+    }
+    if (verification == 0)
+    {
+        printf("pas de correspondance a la recherche");
+    }
+    
 }
 
 int main()
@@ -129,13 +168,16 @@ int main()
     struct Liste *maListe = initialisation();
     // gab
     insertion(maListe, "moïse", "Clipal", "membre", 02, 22, 75, 175);
-    insertion(maListe, "sofiane", "Clipal", "membre", 03, 22, 75, 175);
-    insertion(maListe, "charlottegrosboobs", "Clipal", "membre", 04, 22, 75, 175);
+    insertion(maListe, "sofiane", "Clipal", "membre", 03, 2, 75, 174);
+    insertion(maListe, "charlottegrosboobs", "Clipal", "membre", 03, 22, 75, 17);
 
-    supprimer(maListe, 1);
-    supprimer(maListe, 2);
+    /* supprimer(maListe, 2);
+    supprimer(maListe, 1); */
+
+    affichage_gestionnaire(maListe);
+
+    recherche_par_int(maListe, 2);
     
-    affichage(maListe);
 
     return 0;
 }
