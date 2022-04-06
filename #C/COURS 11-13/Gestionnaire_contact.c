@@ -4,9 +4,9 @@
 
 struct GYM
 {
-    char *name;
-    char *lastname;
-    char *souscription;
+    char name[12];
+    char lastname[12];
+    char souscription[12];
     unsigned int id;
     unsigned int age;
     unsigned int weight;
@@ -20,7 +20,8 @@ struct Liste
     struct GYM *premier;
 };
 
-struct Liste *initialisation()
+struct Liste *initialisation(char *name, char *lastname,
+               char *souscription, unsigned int id, unsigned int age, unsigned int weight, unsigned int size)
 {
     struct Liste *liste = malloc(sizeof(*liste));
     struct GYM *gym = malloc(sizeof(*gym));
@@ -30,13 +31,13 @@ struct Liste *initialisation()
         exit(EXIT_FAILURE);
     }
 
-    gym->name = "gabriel";
-    gym->lastname = "Qaddaha";
-    gym->souscription = "STAFF";
-    gym->id = 1;
-    gym->age = 22;
-    gym->weight = 82;
-    gym->size = 180;
+    strcpy( gym->name, name );
+    strcpy( gym->lastname, lastname );
+    strcpy( gym->souscription, souscription );
+    gym->id = id;
+    gym->age = age;
+    gym->weight = weight;
+    gym->size = size;
 
     gym->suivant = NULL;
     gym->precedent = NULL;
@@ -53,10 +54,9 @@ void insertion(struct Liste *liste, char *name, char *lastname,
     {
         exit(EXIT_FAILURE);
     }
-
-    new->name = name;
-    new->lastname = lastname;
-    new->souscription = souscription;
+    strcpy( new->name, name );
+    strcpy( new->lastname, lastname );
+    strcpy( new->souscription, souscription );
     new->id = id;
     new->age = age;
     new->weight = weight;
@@ -198,14 +198,12 @@ void recherche_par_char(struct Liste *liste, char *recherche)
 
 int main()
 {
-    struct Liste *maListe = initialisation();
+    struct Liste *maListe = initialisation("Gabriel", "Qaddaha", "STAFF", 01, 22, 82, 180);
 
     insertion(maListe, "moïse", "Clipal", "membre", 02, 22, 75, 175);
     insertion(maListe, "sofiane", "Clipal", "membre", 03, 2, 75, 174);
     insertion(maListe, "JP", "Clipal", "membre", 03, 22, 75, 17);
 
-    supprimer(maListe, 2);
-    supprimer(maListe, 1); 
 
     affichage_gestionnaire(maListe);
 
