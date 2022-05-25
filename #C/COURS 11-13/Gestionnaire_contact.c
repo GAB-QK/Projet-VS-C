@@ -21,7 +21,8 @@ struct Liste
 };
 
 struct Liste *initialisation(char *name, char *lastname,
-               char *souscription, unsigned int id, unsigned int age, unsigned int weight, unsigned int size)
+               char *souscription, unsigned int id, unsigned int age,
+               unsigned int weight, unsigned int size)
 {
     struct Liste *liste = malloc(sizeof(*liste));
     struct GYM *gym = malloc(sizeof(*gym));

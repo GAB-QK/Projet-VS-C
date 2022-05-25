@@ -1,46 +1,27 @@
-#include "stdio.h"
-#include "string.h"
-#include "stdlib.h"
+// Shell Sort in C programming
 
-void swap(int tableau[], int a, int b)
+#include <stdio.h>
+
+// Shell sort
+void shellSort(int array[], int n)
 {
-    int temp = tableau[a];
-    tableau[a] = tableau[b];
-    tableau[b] = temp;
-}
-
-void quickSort(int tableau[], int debut, int fin)
-{
-
-    int gauche = debut - 1;
-
-    int droite = fin + 1;
-
-    const int pivot = tableau[debut];
-
-    if (debut >= fin)
-        return;
-
-    while (1)
+    // Rearrange elements at each n/2, n/4, n/8, ... intervals
+    for (int interval = n / 2; interval > 0; interval /= 2)
     {
-        do
-            gauche++;
-        while (tableau[gauche] < pivot);
-        do
-            droite--;
-        while (tableau[droite] > pivot);
-
-        if (gauche < droite)
-            swap(tableau, gauche, droite);
-
-        else
-            break;
+        for (int i = interval; i < n; i += 1)
+        {
+            int temp = array[i];
+            int j;
+            for (j = i; j >= interval && array[j - interval] > temp; j -= interval)
+            {
+                array[j] = array[j - interval];
+            }
+            array[j] = temp;
+        }
     }
-
-    quickSort(tableau, debut, droite);
-    quickSort(tableau, droite + 1, fin);
 }
 
+// Print an array
 void printArray(int array[], int size)
 {
     for (int i = 0; i < size; ++i)
@@ -50,9 +31,10 @@ void printArray(int array[], int size)
     printf("\n");
 }
 
+// Driver code
 int main()
 {
-    int bigarray[] = {
+    int data[] = {
         897,
         970,
         918,
@@ -1053,14 +1035,9 @@ int main()
         188,
         369,
         589,
-        989,
+        989
     };
-
-    int lenght = (sizeof(bigarray) / sizeof(bigarray[0]));
-    int i;
-
-    quickSort(bigarray, 0, lenght - 1);
-    printArray(bigarray, lenght);
-
-    return 0;
+    int size = sizeof(data) / sizeof(data[0]);
+    shellSort(data, size);
+    printArray(data, size);
 }

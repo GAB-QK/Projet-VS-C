@@ -1,0 +1,188 @@
+NOM Prénom
+> Qaddaha Gabriel
+
+Q1. Quelle est la première fonction exécutée par un programme C (point d'entrée)
+---
+
+1. entry
+2. start
+3. main
+4. begin
+> 3
+
+Q2. Quel type doit retourner le point d'entrée ?
+---
+
+1. void
+2. char*
+3. int
+4. double
+> 3
+
+Q3. Quelles différences existe-t-il entre les types en C ?
+---
+
+1. La taille
+2. La représentation en mémoire
+3. La taille et la représentation en mémoire
+4. Aucune
+> 3
+
+Q4. Quelle différence existe t-il entre 'c' et "c" ?
+---
+
+1. 'c' est un caractère, "c" est une chaîne de caractère 
+2. 'c' est une chaîne de caractère , "c" est un caractère
+3. 'c' est une expression régulière, "c" est une constante
+4. Aucune
+> 1
+
+Q5. Un entier non-signé (unsigned int) contient :
+---
+
+1. Un nombre positif
+2. Un nombre négatif
+3. Un nombre à virgule
+4. Un nombre sans limite
+> 1
+
+Q6. Quel est l'appel de fonction permettant d'afficher un nombre ?
+---
+
+1. print(number);
+2. printf(number);
+3. printf("%s", number);
+4. printf("%d", number);
+> 4
+
+Q7. Comment déclarer une fonction qui renvoi un caractère ?
+---
+
+1. def mafonction( param ):
+2. function mafonction( param ){}
+3. function mafonction( param: integer ):char{}
+4. char mafonction( int param ){}
+> 4
+
+Q8. Comment déclarer un tableau de nombres ?
+---
+
+1. int[] array = {0,1,2};
+2. int array[] = {0,1,2};
+3. int array[] = [0,1,2];
+4. int[] array = [0,1,2];
+> 2
+
+Q9. Peut-on mixer les types au sein d'un tableau ? 
+---
+
+1. Oui
+2. Non
+> 1
+
+Q10. Qu'est-ce qu'un pointeur ?
+---
+
+1. Une variable contenant un nombre
+2. Une variable contenant une adresse en mémoire
+3. Une fonction
+4. Un criminel
+> 2
+
+Q11. Comment déclarer un pointeur d'entier ?
+---
+
+1. int ptr;
+2. ptr ptr;
+3. int *ptr;
+4. int ptr*;
+> 3
+
+Q12. Comment obtenir l'adresse en mémoire de : int a = 5;
+---
+
+1. &a
+2. *a
+3. (a)
+4. $£=(-a'
+> 1
+
+Q13. Comment obtenir la valeur stockée à l'adresse pointée par le pointeur ?
+---
+ adresse  valeur
+|--------|--------|
+|0x00fa  | 10   <-|- ça
+|--------|--------|
+|0x00fe  | 0x00fa |
+|--------|--------|
+
+1. &a
+2. *a
+3. (a)
+4. $£=(-a'
+> 2
+
+Q14. Un tableau est :
+---
+
+1. Un pointeur vers le dernier élément
+2. Une liste chaînée
+3. Une structure
+4. Un pointeur vers le premier élément
+> 4
+
+Q15. Une chaîne de caractères est :
+---
+
+1. Un type 
+2. Un tableau de caractères terminé par \0
+3. Une liste chaînée
+4. Une structure
+> 2
+
+Q16. Comment accéder au 3ème caractère d'une chaîne ?
+---
+
+1. str[3];
+2. str[2];
+3. str[1];
+4. str[0];
+> 2
+
+Q17. Quelle différence entre le pile (stack) et le tas (heap) ?
+---
+
+1. La pile fournit de l'énergie à la télécommande
+2. La pile stock des valeurs jusqu'à désallocation, le tas stock les variables locales de vos fonctions
+3. La pile stock les variables locales de vos fonctions, le tas stock des valeurs jusqu'à désallocation
+4. La pile stock les variables, le tas stock les fonctions
+> 3
+
+Q18. Quelle fonction permet d'allouer de la mémoire dans le tas ?
+---
+
+1. memset()
+2. alloc()
+3. malloc()
+4. mem_svp()
+> 3
+
+Q19. Pourquoi realloc retourne un pointeur ?
+---
+
+1. Car les pointeurs c'est sympa
+2. Pour pouvoir utiliser la sortie de realloc dans l'entrée d'une autre fonction
+3. realloc retourne 0 si la réallocation s'est bien passée, -1 sinon
+4. Car la mémoire réallouée peut être à un emplacement différent dans la mémoire
+> 4
+
+Q20. Quel paramètre reçoit la fonction : int mafonction(char*** param){}
+---
+
+1. Une chaîne de caractères
+2. Une référence vers un tableau de char
+3. Un tableau de chaîne de caractères
+4. Une référence vers un tableau de chaîne de caractères
+> 4
+
+
